@@ -1,9 +1,15 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+# Use /tmp for writable SQLite on Heroku
+db_path = os.path.join("/tmp", "test.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -14,6 +20,8 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -31,7 +39,6 @@ def index():
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
         return render_template('index.html', tasks=tasks)
-
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -59,7 +66,6 @@ def update(id):
 
     else:
         return render_template('update.html', task=task)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
