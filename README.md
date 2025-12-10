@@ -1,7 +1,7 @@
 # Scalable Flask Development Workflow
 
 🚀 Projects
-- [Task Master App](https://task-master-flex-free.onrender.com) – Flask app for task management, deployed with Heroku.
+- [Task Master App](https://task-master-flex-free.onrender.com) – Flask app for task management, deployed with Render.
 
 ### 1. **Start With the Problem**
 
