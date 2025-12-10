@@ -2,7 +2,7 @@
 
 🚀 Projects
 - [Task Master App](https://task-master-flex-free.onrender.com) – Flask app for task management, deployed with Render.
- *Note: This project uses a Flask application factory (create_app()) and a virtual environment for dependencies, with deployment handled via Gunicorn on Render.*
+     *Note: This project uses a Flask application factory (create_app()) and a virtual environment for dependencies, with deployment handled via Gunicorn on Render.*
 
 ### 1. **Start With the Problem**
 
